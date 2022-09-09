@@ -1,4 +1,5 @@
-module github.com/crossplane-contrib/provider-jet-template
+// module github.com/crossplane-contrib/provider-jet-template
+module github.com/HotThoughts/provider-jet-github
 
 go 1.17
 
