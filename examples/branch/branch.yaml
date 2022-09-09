@@ -1,0 +1,11 @@
+apiVersion: branch.github.jet.crossplane.io/v1alpha1
+kind: Branch
+metadata:
+  name: hello-terrajet
+spec:
+  forProvider:
+    branch: hello-terrajet
+    repositoryRef:
+      name: hello-crossplane
+  providerConfigRef:
+    name: default

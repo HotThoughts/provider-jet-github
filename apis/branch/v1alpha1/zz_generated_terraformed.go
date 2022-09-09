@@ -23,81 +23,78 @@ import (
 
 	"github.com/crossplane/terrajet/pkg/resource"
 	"github.com/crossplane/terrajet/pkg/resource/json"
-	
 )
 
-    // GetTerraformResourceType returns Terraform resource type for this Branch
-    func (mg *Branch) GetTerraformResourceType() string {
-        return "github_branch"
-    }
+// GetTerraformResourceType returns Terraform resource type for this Branch
+func (mg *Branch) GetTerraformResourceType() string {
+	return "github_branch"
+}
 
-    // GetConnectionDetailsMapping for this Branch
-    func (tr *Branch) GetConnectionDetailsMapping() map[string]string {
-      return nil
-    }
+// GetConnectionDetailsMapping for this Branch
+func (tr *Branch) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
 
-    // GetObservation of this Branch
-    func (tr *Branch) GetObservation() (map[string]interface{}, error) {
-        o, err := json.TFParser.Marshal(tr.Status.AtProvider)
-        if err != nil {
-            return nil, err
-        }
-        base := map[string]interface{}{}
-        return base, json.TFParser.Unmarshal(o, &base)
-    }
+// GetObservation of this Branch
+func (tr *Branch) GetObservation() (map[string]interface{}, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]interface{}{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
 
-    // SetObservation for this Branch
-    func (tr *Branch) SetObservation(obs map[string]interface{}) error {
-        p, err := json.TFParser.Marshal(obs)
-        if err != nil {
-            return err
-        }
-        return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
-    }
+// SetObservation for this Branch
+func (tr *Branch) SetObservation(obs map[string]interface{}) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
 
-    // GetID returns ID of underlying Terraform resource of this Branch
-    func (tr *Branch) GetID() string {
-        if tr.Status.AtProvider.ID == nil {
-            return ""
-        }
-        return *tr.Status.AtProvider.ID
-    }
+// GetID returns ID of underlying Terraform resource of this Branch
+func (tr *Branch) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
 
-    // GetParameters of this Branch
-    func (tr *Branch) GetParameters() (map[string]interface{}, error) {
-        p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
-        if err != nil {
-            return nil, err
-        }
-        base := map[string]interface{}{}
-        return base, json.TFParser.Unmarshal(p, &base)
-    }
+// GetParameters of this Branch
+func (tr *Branch) GetParameters() (map[string]interface{}, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]interface{}{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
 
-    // SetParameters for this Branch
-    func (tr *Branch) SetParameters(params map[string]interface{}) error {
-        p, err := json.TFParser.Marshal(params)
-        if err != nil {
-            return err
-        }
-        return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
-    }
+// SetParameters for this Branch
+func (tr *Branch) SetParameters(params map[string]interface{}) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
 
-    // LateInitialize this Branch using its observed tfState.
-    // returns True if there are any spec changes for the resource.
-    func (tr *Branch) LateInitialize(attrs []byte) (bool, error) {
-        params := &BranchParameters{}
-        if err := json.TFParser.Unmarshal(attrs, params); err != nil {
-            return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
-        }
-        opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
-        
+// LateInitialize this Branch using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *Branch) LateInitialize(attrs []byte) (bool, error) {
+	params := &BranchParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
 
-        li := resource.NewGenericLateInitializer(opts...)
-        return li.LateInitialize(&tr.Spec.ForProvider, params)
-    }
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
 
-    // GetTerraformSchemaVersion returns the associated Terraform schema version
-    func (tr *Branch) GetTerraformSchemaVersion() int {
-        return 0
-    }
-
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *Branch) GetTerraformSchemaVersion() int {
+	return 0
+}

@@ -28,7 +28,7 @@ import (
 
 const (
 	resourcePrefix = "github"
-	modulePath     = "github.com/crossplane-contrib/provider-jet-github"
+	modulePath     = "github.com/HotThoughts/provider-jet-github"
 )
 
 //go:embed schema.json

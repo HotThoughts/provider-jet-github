@@ -1,0 +1,13 @@
+apiVersion: repository.github.jet.crossplane.io/v1alpha1
+kind: Repository
+metadata:
+  name: hello-crossplane
+spec:
+  forProvider:
+    description: "Managed with Crossplane Github Provider (generated with Terrajet)"
+    visibility: public
+    template:
+      - owner: crossplane-contrib
+        repository: provider-jet-template
+  providerConfigRef:
+    name: default

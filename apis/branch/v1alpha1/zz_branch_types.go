@@ -23,58 +23,50 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
-
 )
 
-
-
-
 type BranchObservation struct {
+	Etag *string `json:"etag,omitempty" tf:"etag,omitempty"`
 
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-Etag *string `json:"etag,omitempty" tf:"etag,omitempty"`
+	Ref *string `json:"ref,omitempty" tf:"ref,omitempty"`
 
-ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-Ref *string `json:"ref,omitempty" tf:"ref,omitempty"`
-
-Sha *string `json:"sha,omitempty" tf:"sha,omitempty"`
+	Sha *string `json:"sha,omitempty" tf:"sha,omitempty"`
 }
-
 
 type BranchParameters struct {
 
+	// +kubebuilder:validation:Required
+	Branch *string `json:"branch" tf:"branch,omitempty"`
 
-// +kubebuilder:validation:Required
-Branch *string `json:"branch" tf:"branch,omitempty"`
+	// +crossplane:generate:reference:type=github.com/HotThoughts/provider-jet-github/apis/repository/v1alpha1.Repository
+	// +kubebuilder:validation:Optional
+	Repository *string `json:"repository,omitempty" tf:"repository,omitempty"`
 
-// +crossplane:generate:reference:type=github.com/HotThoughts/provider-jet-github/apis/repository/v1alpha1.Repository
-// +kubebuilder:validation:Optional
-Repository *string `json:"repository,omitempty" tf:"repository,omitempty"`
+	// +kubebuilder:validation:Optional
+	RepositoryRef *v1.Reference `json:"repositoryRef,omitempty" tf:"-"`
 
-// +kubebuilder:validation:Optional
-RepositoryRef *v1.Reference `json:"repositoryRef,omitempty" tf:"-"`
+	// +kubebuilder:validation:Optional
+	RepositorySelector *v1.Selector `json:"repositorySelector,omitempty" tf:"-"`
 
-// +kubebuilder:validation:Optional
-RepositorySelector *v1.Selector `json:"repositorySelector,omitempty" tf:"-"`
+	// +kubebuilder:validation:Optional
+	SourceBranch *string `json:"sourceBranch,omitempty" tf:"source_branch,omitempty"`
 
-// +kubebuilder:validation:Optional
-SourceBranch *string `json:"sourceBranch,omitempty" tf:"source_branch,omitempty"`
-
-// +kubebuilder:validation:Optional
-SourceSha *string `json:"sourceSha,omitempty" tf:"source_sha,omitempty"`
+	// +kubebuilder:validation:Optional
+	SourceSha *string `json:"sourceSha,omitempty" tf:"source_sha,omitempty"`
 }
 
 // BranchSpec defines the desired state of Branch
 type BranchSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider       BranchParameters `json:"forProvider"`
+	ForProvider     BranchParameters `json:"forProvider"`
 }
 
 // BranchStatus defines the observed state of Branch.
 type BranchStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider          BranchObservation `json:"atProvider,omitempty"`
+	AtProvider        BranchObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

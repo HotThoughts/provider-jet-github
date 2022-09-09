@@ -2,15 +2,15 @@
 # Setup Project
 
 PROJECT_NAME := provider-jet-github
-PROJECT_REPO := github.com/crossplane-contrib/$(PROJECT_NAME)
+PROJECT_REPO := github.com/HotThoughts/$(PROJECT_NAME)
 
-export TERRAFORM_VERSION := 1.1.6
+export TERRAFORM_VERSION := 1.2.7
 
 export TERRAFORM_PROVIDER_SOURCE := integrations/github
 export TERRAFORM_PROVIDER_VERSION := 4.31.0
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-github
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://releases.hashicorp.com/terraform-provider-github/4.31.0
-export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-github_v4.31.0_x5
+export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-github_v4.31.0
 
 PLATFORMS ?= linux_amd64 linux_arm64
 
