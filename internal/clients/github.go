@@ -40,7 +40,6 @@ const (
 	// GitHub provider config
 	keyBaseURL = "base_url"
 	keyOwner   = "owner"
-	keyToken   = "token"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which

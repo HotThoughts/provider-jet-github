@@ -87,13 +87,11 @@ linters:
     - bodyclose
     - dogsled
     - gocyclo
-    - goimports
-    - revive
+    # - revive
     - gosec
-    - gosimple
     - govet
     - ineffassign
-    - lll
+    # - lll
     - megacheck
     - misspell
     - nakedret
@@ -104,8 +102,8 @@ linters:
     - unused
     - errorlint
     - bodyclose
-    - gci
-    - forbidigo
+    # - gci
+    # - forbidigo
 
   presets:
     - bugs
