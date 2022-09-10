@@ -5,6 +5,10 @@ on:
     branches:
       - main
       - release-*
+    paths:
+      - '.github/ci.yml'
+      - '!**.md'
+      - '!examples/**'
   pull_request: {}
   workflow_dispatch: {}
 
