@@ -24,6 +24,7 @@ import (
 	branch "github.com/HotThoughts/provider-jet-github/internal/controller/branch/branch"
 	providerconfig "github.com/HotThoughts/provider-jet-github/internal/controller/providerconfig"
 	repository "github.com/HotThoughts/provider-jet-github/internal/controller/repository/repository"
+	team "github.com/HotThoughts/provider-jet-github/internal/controller/team/team"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -33,6 +34,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		branch.Setup,
 		providerconfig.Setup,
 		repository.Setup,
+		team.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err
