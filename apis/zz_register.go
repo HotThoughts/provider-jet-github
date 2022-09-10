@@ -24,6 +24,7 @@ import (
 
 	v1alpha1 "github.com/HotThoughts/provider-jet-github/apis/branch/v1alpha1"
 	v1alpha1repository "github.com/HotThoughts/provider-jet-github/apis/repository/v1alpha1"
+	v1alpha1team "github.com/HotThoughts/provider-jet-github/apis/team/v1alpha1"
 	v1alpha1apis "github.com/HotThoughts/provider-jet-github/apis/v1alpha1"
 )
 
@@ -32,6 +33,7 @@ func init() {
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
 		v1alpha1repository.SchemeBuilder.AddToScheme,
+		v1alpha1team.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 	)
 }
