@@ -51,7 +51,7 @@ GO111MODULE = on
 # ====================================================================================
 # Setup Images
 
-DOCKER_REGISTRY ?= ghcr.io/hotthoughts
+DOCKER_REGISTRY ?= hotthoughts
 IMAGES = provider-jet-github provider-jet-github-controller
 -include build/makelib/image.mk
 

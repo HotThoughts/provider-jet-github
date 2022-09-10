@@ -12,8 +12,8 @@ on:
         default: 'alpha'
 
 env:
+  DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  REGISTRY: ghcr.io
   AWS_DEFAULT_REGION: eu-central-1
 
 jobs:
@@ -29,15 +29,15 @@ jobs:
       - name: Fetch History
         run: git fetch --prune --unshallow
 
-      - name: Log in to the Container registry
+      - name: Log in to Docker
         uses: docker/login-action@49ed152c8eca782a232dede0303416e8f356c37b
+        if: env.DOCKER_TOKEN != ''
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Promote Artifacts in S3 and Docker Hub
-        if: env.AWS_SECRET_ACCESS_KEY != ''
+        if: env.AWS_SECRET_ACCESS_KEY != '' && env.DOCKER_TOKEN != ''
         run: make -j2 promote BRANCH_NAME=${GITHUB_REF##*/}
         env:
           VERSION: ${{ github.event.inputs.version }}
