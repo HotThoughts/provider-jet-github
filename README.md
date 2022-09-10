@@ -8,9 +8,9 @@ GitHub API.
 ## Getting Started
 
 Install the provider by using the following command after changing the image tag
-to the [latest release](https://github.com/crossplane-contrib/provider-jet-github/releases):
+to the [latest release](https://github.com/hotthoughts/provider-jet-github/releases):
 ```
-kubectl crossplane install provider crossplane/provider-jet-github:v0.1.0
+kubectl crossplane install provider hotthoughts/provider-jet-github:v0.0.1
 ```
 
 Alternatively, you can use declarative installation:
@@ -20,7 +20,7 @@ kubectl apply -f examples/install.yaml
 
 Notice that in this example Provider resource is referencing ControllerConfig with debug enabled.
 
-You can see the API reference [here](https://doc.crds.dev/github.com/crossplane-contrib/provider-jet-github).
+You can see the API reference [here](https://doc.crds.dev/github.com/hotthoughts/provider-jet-github).
 
 ## Developing
 
@@ -50,7 +50,7 @@ make build
 ## Report a Bug
 
 For filing bugs, suggesting improvements, or requesting new features, please
-open an [issue](https://github.com/crossplane-contrib/provider-jet-github/issues).
+open an [issue](https://github.com/hotthoughts/provider-jet-github/issues).
 
 ## Contact
 
