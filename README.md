@@ -10,7 +10,7 @@ GitHub API.
 Install the provider by using the following command after changing the image tag
 to the [latest release](https://github.com/hotthoughts/provider-jet-github/releases):
 ```
-kubectl crossplane install provider hotthoughts/provider-jet-github:v0.0.1
+kubectl crossplane install provider hotthoughts/provider-jet-github:v0.0.2
 ```
 
 Alternatively, you can use declarative installation:
