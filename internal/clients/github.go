@@ -19,6 +19,7 @@ package clients
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 
 	"github.com/crossplane/crossplane-runtime/pkg/resource"
 	"github.com/pkg/errors"
@@ -40,6 +41,12 @@ const (
 	// GitHub provider config
 	keyBaseURL = "base_url"
 	keyOwner   = "owner"
+	keyToken = "token"
+
+	// GitHub credentials environment variable names
+	envToken = "GITHUB_TOKEN"
+
+	fmtEnvVar = "%s=%s"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -83,6 +90,11 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 		if v, ok := githubCreds[keyOwner]; ok {
 			ps.Configuration[keyOwner] = v
+		}
+
+		// set environment variables for sensitive provider configuration
+		ps.Env = []string{
+			fmt.Sprintf(fmtEnvVar, envToken, githubCreds[keyToken]),
 		}
 
 		return ps, nil
